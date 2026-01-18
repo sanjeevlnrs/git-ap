@@ -70,7 +70,7 @@ jobs:
           name: build-artifacts
 
       - name: Output Artifact Files
-        run: ls -la dist
+        run: ls
 
       - name: Deploy to Production
         run: |

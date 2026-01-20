@@ -7,9 +7,22 @@ on:
         required: false
         type: string
         default: "This is a reusable workflow!"
+    # secrets:
+    #   EXAMPLE_SECRET:
+    #     description: "An example secret"
+    #     required: false
+    outputs:
+      example_output:
+        description: "An example output"
+        value: ${{ jobs.deploy.outputs.example_output }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      example_output: ${{ steps.set_output.outputs.example_output }}
     steps:
       - name: Output Message
         run: echo "${{ inputs.message }}"
+      - name: Set example output
+        id: set_output
+        run: echo "example_output=output_from_reusable_workflow" >> $GITHUB_OUTPUT

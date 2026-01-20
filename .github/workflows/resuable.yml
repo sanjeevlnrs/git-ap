@@ -1,8 +1,15 @@
 name: Resuable workflow
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      message:
+        description: "Message to print"
+        required: false
+        type: string
+        default: "This is a reusable workflow!"
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Output Message
-        run: echo "This is a reusable workflow!"
+        run: echo "${{ inputs.message }}"
